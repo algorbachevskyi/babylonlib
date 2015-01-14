@@ -1,0 +1,24 @@
+{
+  "name": "babylonlib.com",
+  "version": "0.0.0",
+  "homepage": "",
+  "authors": [
+    "Al Gor"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fullpage": "~2.5.2",
+    "fontawesome": "~4.2.0",
+    "lumx": "~0.2.48",
+    "angular-route": "~1.3.8",
+    "angular-ui-router": "~0.2.13"
+  }
+}
