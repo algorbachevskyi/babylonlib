@@ -1,36 +1,23 @@
 
 var blAppControllers = angular.module('blAppControllers', []);
 
+blAppControllers.controller('MenuCtrl', ['$scope', '$log',
+    function($scope, $log) {
+
+        $scope.menu = {
+            opened: false
+        };
+
+        $log.info('Into menu ctrl');
+
+    }]);
+
+//-----------------------------------------------------------
+
 blAppControllers.controller('MainCtrl', ['$scope', '$log',
     function($scope, $log) {
 
         $log.info('Into main ctrl');
-//        $('#mainpage').fullpage({
-//            //Navigation
-////        menu: true,
-////        anchors:['1', '2','3'],
-////        navigation: true,
-////        navigationPosition: 'right',
-//            resize: false,
-//
-//            afterLoad : function(anchorLink, index){
-//                $log.debug('Loaded!');
-//                switch (index) {
-//                    case 3 :
-//                        $('.up-button').show();
-//                        $('.down-button').fadeOut();
-//                        break;
-//                    case 1 :
-//                        $('.down-button').show();
-//                        $('.up-button').fadeOut();
-//                        break;
-//                    default:
-//                        $('.up-button').show();
-//                        $('.down-button').show();
-//                        break;
-//                }
-//            }
-//        });
 
         $('body').css('overflow','hidden');
 

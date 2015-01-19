@@ -5,6 +5,7 @@
 var blApp = angular.module('blApp', [
     'ngRoute',
     'lumx',
+    'ngTouch',
     'blAppControllers'
 ]);
 

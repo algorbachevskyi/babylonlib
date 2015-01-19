@@ -22,7 +22,8 @@
     <script src="vendor/fullpage/vendors/jquery.easings.min.js"></script>
     <script src="vendor/fullpage/vendors/jquery.slimscroll.min.js"></script>
     <script src="vendor/fullpage/jquery.fullPage.js"></script>
-    <!--<script src="scripts/js/jquery.onepage-scroll.js"></script>-->
+    <script src="vendor/angular-touch/angular-touch.min.js"></script>
+    <!--<script src="vendor/movejs/move.min.js"></script>-->
     <script src="scripts/js/custom.js"></script>
 
     <script src="scripts/app.js"></script>
@@ -30,13 +31,12 @@
 
 
 </head>
-<body>
+<body ng-controller="MenuCtrl" ng-swipe-left="menu.opened = false" ng-swipe-right="menu.opened = true">
 <nav class="navbar navbar-fixed-top bl-nav">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle" ng-click="menu.opened = !menu.opened ">
                 <i class="fa fa-bars"></i>
-                <paper-ripple fit></paper-ripple>
             </button>
         </div>
 
@@ -47,35 +47,35 @@
                 <i class="fa fa-instagram"></i>
             </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+        <div id="navbar" class="navbar-collapse navbar-swipe-left {{menu.opened ? 'openMenu': 'closeMenu'}}" aria-expanded="false" style="height: 1px;">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="#/main" lx-ripple="grey-600"> головна </a>
+                    <a href="#/main" lx-ripple="grey-600" ng-click="menu.opened = false"> головна </a>
                 </li>
                 <li>
-                    <a href="#/books" lx-ripple="grey-600"> книги </a>
+                    <a href="#/books" lx-ripple="grey-600" ng-click="menu.opened = false"> книги </a>
                 </li>
                 <li>
-                    <a href="#/authors" lx-ripple="grey-600"> автори </a>
+                    <a href="#/authors" lx-ripple="grey-600" ng-click="menu.opened = false"> автори </a>
                 </li>
                 <li>
-                    <a href="#/translators"> перекладачі </a>
+                    <a href="#/translators" ng-click="menu.opened = false"> перекладачі </a>
                 </li>
                 <li>
-                    <a href="#/drawers"> ілюстратори </a>
+                    <a href="#/drawers" ng-click="menu.opened = false"> ілюстратори </a>
                 </li>
                 <li>
-                    <a href="#/contacts"> контакти </a>
+                    <a href="#/contacts" ng-click="menu.opened = false"> контакти </a>
                 </li>
                 <li>
-                    <a href="#/shop"> магазин </a>
+                    <a href="#/shop" ng-click="menu.opened = false"> магазин </a>
                 </li>
             </ul>
         </div>
 
     </div>
 </nav>
-
+    <div class="{{menu.opened ? 'menu-overlay' : ''}}"></div>
     <div ng-view ></div>
 
 </body>

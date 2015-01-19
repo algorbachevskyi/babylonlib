@@ -214,6 +214,39 @@ body {
     right: 0; }
  }
 
+@media (max-width: 767px) {
+  .menu-overlay {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 101; }
+
+  .navbar-swipe-left {
+    height: 100vh !important;
+    position: absolute;
+    background-color: #fff;
+    min-width: 200px;
+    width: 65%;
+    max-height: 100vh !important;
+    box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.3);
+    left: -65%; }
+
+  .openMenu {
+    left: 15px;
+    -webkit-transition: left 0.3s cubic-bezier(0, 0.9, 1, 1);
+    -moz-transition: left 0.3s cubic-bezier(0, 0.9, 1, 1);
+    -o-transition: left 0.3s cubic-bezier(0, 0.9, 1, 1);
+    transition: left 0.3s cubic-bezier(0, 0.9, 1, 1); }
+
+  .closeMenu {
+    left: -65%;
+    -webkit-transition: left 0.5s cubic-bezier(0, 0.9, 1, 1);
+    -moz-transition: left 0.5s cubic-bezier(0, 0.9, 1, 1);
+    -o-transition: left 0.5s cubic-bezier(0, 0.9, 1, 1);
+    transition: left 0.5s cubic-bezier(0, 0.9, 1, 1); }
+ }
+
 @media (min-width: 992px) {
   #mainpage .up-button, #mainpage .down-button {
     left: 49%; }
