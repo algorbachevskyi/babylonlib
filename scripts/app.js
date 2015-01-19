@@ -17,7 +17,7 @@ blApp.config(['$routeProvider',
             }).
             when('/books', {
                 templateUrl: 'scripts/views/books.html',
-                controller: 'MainCtrl'
+                controller: 'BooksCtrl'
             }).
             when('/authors', {
                 templateUrl: 'scripts/views/authors.html',
@@ -27,3 +27,32 @@ blApp.config(['$routeProvider',
                 redirectTo: '/main'
             });
     }]);
+
+blApp.directive('fullpageJs', function(){
+
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            $(element).fullpage({
+                afterLoad : function(anchorLink, index){
+                    console.log('Loaded!');
+                    switch (index) {
+                        case 3 :
+                            $('.up-button').show();
+                            $('.down-button').fadeOut();
+                            break;
+                        case 1 :
+                            $('.down-button').show();
+                            $('.up-button').fadeOut();
+                            break;
+                        default:
+                            $('.up-button').show();
+                            $('.down-button').show();
+                            break;
+                    }
+                }
+            });
+        }
+    }
+
+});
