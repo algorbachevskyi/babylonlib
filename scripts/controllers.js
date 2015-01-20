@@ -67,3 +67,33 @@ blAppControllers.controller('TranslatorsCtrl', ['$scope', '$log',
 
         $log.info('Into translators ctrl');
     }]);
+
+//-----------------------------------------------------------
+
+blAppControllers.controller('DrawersCtrl', ['$scope', '$log',
+    function($scope, $log) {
+
+        $('body').css('overflow','visible');
+
+        $log.info('Into drawers ctrl');
+    }]);
+
+//-----------------------------------------------------------
+
+blAppControllers.controller('ContactsCtrl', ['$scope', '$log',
+    function($scope, $log) {
+
+        $('body').css('overflow','visible');
+
+        $log.info('Into contacts ctrl');
+    }]);
+
+//-----------------------------------------------------------
+
+blAppControllers.controller('ShopCtrl', ['$scope', '$log',
+    function($scope, $log) {
+
+        $('body').css('overflow','visible');
+
+        $log.info('Into shop ctrl');
+    }]);

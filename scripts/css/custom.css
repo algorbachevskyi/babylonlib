@@ -283,14 +283,71 @@ body {
       padding-right: 20px; }
  }
 
-/*
-*   Books page styles
-*/
+/*================================
+*   BOOKS page styles
+*===============================*/
 .books {
   padding: 30px 0 20px;
   height: auto; }
   .books .book-card-wrap {
     margin-bottom: 20px; }
+
+/*================================
+*   AUTHORS page styles
+*================================*/
+.authors {
+  padding: 30px 0 20px;
+  height: auto; }
+  .authors .author-card-wrap {
+    margin-bottom: 30px; }
+    .authors .author-card-wrap .card .btn--fab {
+      position: absolute !important;
+      overflow: hidden;
+      bottom: 90px;
+      right: 35px; }
+    .authors .author-card-wrap .card .card-subtitle {
+      font-size: 1.5em;
+      color: #160f12; }
+    .authors .author-card-wrap .card .paragraph {
+      margin-top: 10px; }
+
+/*================================
+*   TRANSLATORS page styles
+*================================*/
+.translators {
+  padding: 30px 0 20px;
+  height: auto; }
+  .translators .translator-card-wrap {
+    margin-bottom: 30px; }
+    .translators .translator-card-wrap .card .btn--fab {
+      position: absolute !important;
+      overflow: hidden;
+      bottom: 90px;
+      right: 35px; }
+    .translators .translator-card-wrap .card .card-subtitle {
+      font-size: 1.5em;
+      color: #160f12; }
+    .translators .translator-card-wrap .card .paragraph {
+      margin-top: 10px; }
+
+/*================================
+*   DRAWERS page styles
+*================================*/
+.drawers {
+  padding: 30px 0 20px;
+  height: auto; }
+  .drawers .drawer-card-wrap {
+    margin-bottom: 30px; }
+    .drawers .drawer-card-wrap .card .btn--fab {
+      position: absolute !important;
+      overflow: hidden;
+      bottom: 90px;
+      right: 35px; }
+    .drawers .drawer-card-wrap .card .card-subtitle {
+      font-size: 1.5em;
+      color: #160f12; }
+    .drawers .drawer-card-wrap .card .paragraph {
+      margin-top: 10px; }
 
 .section {
   height: 100%; }

@@ -24,6 +24,22 @@ blApp.config(['$routeProvider',
                 templateUrl: 'scripts/views/authors.html',
                 controller: 'AuthorsCtrl'
             }).
+            when('/translators', {
+                templateUrl: 'scripts/views/translators.html',
+                controller: 'TranslatorsCtrl'
+            }).
+            when('/drawers', {
+                templateUrl: 'scripts/views/drawers.html',
+                controller: 'DrawersCtrl'
+            }).
+            when('/contacts', {
+                templateUrl: 'scripts/views/contacts.html',
+                controller: 'ContactsCtrl'
+            }).
+            when('/shop', {
+                templateUrl: 'scripts/views/shop.html',
+                controller: 'ShopCtrl'
+            }).
             otherwise({
                 redirectTo: '/main'
             });
