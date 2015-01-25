@@ -303,7 +303,7 @@ body {
     .authors .author-card-wrap .card .btn--fab {
       position: absolute !important;
       overflow: hidden;
-      bottom: 90px;
+      bottom: 101px;
       right: 35px; }
     .authors .author-card-wrap .card .card-subtitle {
       font-size: 1.5em;
@@ -322,7 +322,7 @@ body {
     .translators .translator-card-wrap .card .btn--fab {
       position: absolute !important;
       overflow: hidden;
-      bottom: 90px;
+      bottom: 101px;
       right: 35px; }
     .translators .translator-card-wrap .card .card-subtitle {
       font-size: 1.5em;
@@ -341,12 +341,37 @@ body {
     .drawers .drawer-card-wrap .card .btn--fab {
       position: absolute !important;
       overflow: hidden;
-      bottom: 90px;
+      bottom: 101px;
       right: 35px; }
     .drawers .drawer-card-wrap .card .card-subtitle {
       font-size: 1.5em;
       color: #160f12; }
     .drawers .drawer-card-wrap .card .paragraph {
+      margin-top: 10px; }
+
+/*================================
+*   SHOP page styles
+*================================*/
+.shop {
+  padding: 30px 0 20px;
+  height: auto; }
+  .shop .shop-card-wrap {
+    margin-bottom: 30px; }
+    .shop .shop-card-wrap .card .value {
+      float: right;
+      padding: 0 10px;
+      font-size: 1.9em;
+      line-height: 38px;
+      text-transform: uppercase; }
+    .shop .shop-card-wrap .card .btn--fab {
+      position: absolute !important;
+      overflow: hidden;
+      margin-top: -35px;
+      right: 35px; }
+    .shop .shop-card-wrap .card .card-subtitle {
+      font-size: 1.5em;
+      color: #160f12; }
+    .shop .shop-card-wrap .card .paragraph {
       margin-top: 10px; }
 
 .section {
