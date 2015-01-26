@@ -374,6 +374,26 @@ body {
     .shop .shop-card-wrap .card .paragraph {
       margin-top: 10px; }
 
+.cart-widget {
+  padding: 0 30px 30px; }
+  .cart-widget .paragraph span {
+    display: inline-block;
+    padding-bottom: 5px; }
+  .cart-widget .paragraph hr {
+    margin: 5px 0; }
+  .cart-widget .list-row {
+    width: 100%;
+    text-align: left; }
+    .cart-widget .list-row.btn--raised {
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none; }
+
+@media (min-width: 768px) {
+  .cart-widget {
+    padding: 0 0 0 15px; }
+ }
+
 .section {
   height: 100%; }
 
