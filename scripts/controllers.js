@@ -95,5 +95,26 @@ blAppControllers.controller('ShopCtrl', ['$scope', '$log',
 
         $('body').css('overflow','visible');
 
+        $scope.clickedFab = function() {
+            $log.info('CLICKED!');
+//            $('.hidden-content').addClass('show');
+            setTimeout(function(){
+                $('.add-to-cart-fab').addClass('add-to-cart-fab-hover');
+            },200);
+            setTimeout(function(){
+                $('.hidden-content').addClass('show');
+            },500)
+        };
+
+        $scope.clickedCancel = function() {
+
+            setTimeout(function(){
+                $('.hidden-content').removeClass('show');
+            },200);
+            setTimeout(function(){
+                $('.add-to-cart-fab').removeClass('add-to-cart-fab-hover');
+            },500);
+        };
+
         $log.info('Into shop ctrl');
     }]);

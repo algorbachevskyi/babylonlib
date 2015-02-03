@@ -8,6 +8,7 @@ $mainBgColor : #fff;
 $colorRed: #de0c25;
 $colorBlue: #3e6df6;
 $colorGreen: #95ff4f;
+$deepOrange: #ff3d00;
 
 * {
   outline: 0 !important;
@@ -531,6 +532,11 @@ body {
 
     .card {
 
+      .card__content {
+        height: 118px;
+        overflow: hidden;
+      }
+
       .value {
         float: right;
         padding: 0 10px;
@@ -589,6 +595,62 @@ body {
     padding: 0 0 0 15px;
   }
 }
+
+//.card__top {
+//  box-shadow: 0 1px 2px rgba(0,0,0,.3);
+//}
+
+.hidden-content {
+  position: absolute;
+  width: calc(100% - 29px);
+  height: 170px !important;
+  background: $deepOrange;
+  color: #fff;
+  border-radius: 0 0 2px 2px;
+
+  -webkit-transition-timing-function: cubic-bezier(.34, .12, .98, .36);
+  transition-timing-function: cubic-bezier(.34, .12, .98, .36);
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-clip-path: circle(0px at 80% 20px);
+
+  &.show {
+    -webkit-transition-timing-function: cubic-bezier(.34, .12, .98, .36);
+    transition-timing-function: cubic-bezier(.34, .12, .98, .36);
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-clip-path: circle(300px at 50% 100px);
+    clip-path: circle(300px at 50% 100px);
+    z-index: 10;
+  }
+
+  .value {
+    float: right;
+    padding: 0 10px;
+    font-size: 2.2em !important;
+    line-height: 38px;
+    text-transform: uppercase;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+  }
+
+  .card__actions {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+  }
+}
+
+.add-to-cart-fab-hover {
+  transform: translate(-30px,58px) scale(1.2,1.2);
+//  transform: ;
+//  -webkit-transition: all 0.4s cubic-bezier(1, 0, .51, 1);
+//  -moz-transition: all 0.4s cubic-bezier(1, 0, .51, 1);
+  -webkit-transition: all 0.4s cubic-bezier(1, 0, .80, .26);
+  -moz-transition: all 0.4s cubic-bezier(1, 0, .80, .26);
+  opacity: 0;
+}
 ///////////////////////////////
 
 .section {
@@ -601,4 +663,32 @@ body {
 
 #fp-nav ul li a span, .fp-slidesNav ul li a span {
   border: 1px solid #6F6F6F;
+}
+
+///////////////////////////////
+
+// Material Shadows
+.shadow-d-1 {
+  box-shadow: 0 1px 3px rgba(#000, .12),
+  0 1px 2px rgba(#000, .24) ;
+}
+
+.shadow-d-2 {
+  box-shadow: 0 3px 6px rgba(#000, .16),
+  0 3px 6px rgba(#000, .23) ;
+}
+
+.shadow-d-3 {
+  box-shadow: 0 10px 20px rgba(#000, .19),
+  0 6px 6px rgba(#000, .23) ;
+}
+
+.shadow-d-4 {
+  box-shadow: 0 14px 28px rgba(#000, .25),
+  0 10px 10px rgba(#000, .22) ;
+}
+
+.shadow-d-5 {
+  box-shadow: 0 19px 38px rgba(#000, .30),
+  0 15px 12px rgba(#000, .22) ;
 }
