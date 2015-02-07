@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="blApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babylon Library</title>
+
+    <link rel="stylesheet" href="webapp/fonts/azbuka/azbuka.css"/>
+    <!--<link rel="stylesheet" href="vendor/fullpage/jquery.fullPage.css"/>-->
+    <link rel="stylesheet" href="webapp/vendor/fontawesome/css/font-awesome.min.css"/>
+    <!--<link rel="stylesheet" href="scripts/css/onepage-scroll.css"/>-->
+    <link rel="stylesheet" href="webapp/scripts/css/_bootstrap.css"/>
+    <link rel="stylesheet" href="webapp/scripts/libs/lumx/dist/css/lumx.css">
+    <link rel="stylesheet" href="webapp/scripts/css/custom.css"/>
+
+    <script src="webapp/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="webapp/vendor/velocity/velocity.js"></script>
+    <script src="webapp/vendor/moment/min/moment-with-locales.min.js"></script>
+    <script src="webapp/vendor/angular/angular.js"></script>
+    <script src="webapp/vendor/angular-route/angular-route.min.js"></script>
+    <script src="webapp/scripts/libs/lumx/dist/js/lumx.js"></script>
+    <script src="webapp/vendor/fullpage/vendors/jquery.easings.min.js"></script>
+    <script src="webapp/vendor/fullpage/vendors/jquery.slimscroll.min.js"></script>
+    <script src="webapp/vendor/fullpage/jquery.fullPage.js"></script>
+    <script src="webapp/vendor/angular-touch/angular-touch.min.js"></script>
+    <!--<script src="vendor/movejs/move.min.js"></script>-->
+    <script src="webapp/scripts/js/custom.js"></script>
+
+    <script src="webapp/scripts/app.js"></script>
+    <script src="webapp/scripts/controllers.js"></script>
+
+
+</head>
+<body ng-controller="MenuCtrl" ng-swipe-left="menu.opened = false" ng-swipe-right="menu.opened = true">
+<nav class="navbar navbar-fixed-top bl-nav">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-click="menu.opened = !menu.opened ">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="nav-logo">
+            <div class="socials">
+                <i class="fa fa-facebook-square"></i>
+                <i class="fa fa-youtube-play"></i>
+                <i class="fa fa-instagram"></i>
+            </div>
+        </div>
+        <div id="navbar" class="navbar-collapse navbar-swipe-left {{menu.opened ? 'openMenu': 'closeMenu'}}" aria-expanded="false" style="height: 1px;">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#/main" lx-ripple="grey-600" ng-click="menu.opened = false"> головна </a>
+                </li>
+                <li>
+                    <a href="#/books" lx-ripple="grey-600" ng-click="menu.opened = false"> книги </a>
+                </li>
+                <li>
+                    <a href="#/authors" lx-ripple="grey-600" ng-click="menu.opened = false"> автори </a>
+                </li>
+                <li>
+                    <a href="#/translators" lx-ripple="grey-600" ng-click="menu.opened = false"> перекладачі </a>
+                </li>
+                <li>
+                    <a href="#/drawers" lx-ripple="grey-600" ng-click="menu.opened = false"> ілюстратори </a>
+                </li>
+                <li>
+                    <a href="#/contacts" lx-ripple="grey-600" ng-click="menu.opened = false"> контакти </a>
+                </li>
+                <li>
+                    <a href="#/shop" lx-ripple="grey-600" ng-click="menu.opened = false"> магазин </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+    <div class="{{menu.opened ? 'menu-overlay' : ''}}"></div>
+    <div ng-view ></div>
+
+</body>
+</html>
