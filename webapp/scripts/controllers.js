@@ -118,3 +118,31 @@ blAppControllers.controller('ShopCtrl', ['$scope', '$log',
 
         $log.info('Into shop ctrl');
     }]);
+
+//-----------------------------------------------------------
+
+blAppControllers.controller('ProductCtrl', ['$scope', '$log', '$routeParams',
+    function($scope, $log, $routeParams) {
+
+        $('body').css('overflow','visible');
+
+        $scope.mySlides = [
+            '/webapp/imgs/shop/1/eco-bag.jpg',
+            '/webapp/imgs/shop/1/eco-bag2.jpg',
+            '/webapp/imgs/shop/1/eco-bag3.jpg',
+            '/webapp/imgs/shop/1/eco-bag4.jpg'
+            ];
+
+        $log.info('Into product ctrl', $routeParams.productId);
+
+    }]);
+
+//-----------------------------------------------------------
+
+blAppControllers.controller('CartCtrl', ['$scope', '$log',
+    function($scope, $log) {
+
+        $('body').css('overflow','visible');
+
+        $log.info('Into Cart ctrl');
+    }]);

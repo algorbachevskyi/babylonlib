@@ -6,6 +6,8 @@ var blApp = angular.module('blApp', [
     'ngRoute',
     'lumx',
     'ngTouch',
+    'angular-flexslider',
+    'ngCart',
     'blAppControllers'
 ]);
 
@@ -40,6 +42,14 @@ blApp.config(['$routeProvider',
                 templateUrl: 'webapp/scripts/views/shop.html',
                 controller: 'ShopCtrl'
             }).
+            when('/shop/:productId', {
+                templateUrl: 'webapp/scripts/views/product.html',
+                controller: 'ProductCtrl'
+            }).
+            when('/cart', {
+                templateUrl: 'webapp/scripts/views/cart.html',
+                controller: 'CartCtrl'
+            }).
             otherwise({
                 redirectTo: '/main'
             });
@@ -68,6 +78,22 @@ blApp.directive('fullpageJs', function(){
                             break;
                     }
                 }
+            });
+        }
+    }
+
+});
+
+blApp.directive('fancybox', function(){
+
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            $(element).fancybox({
+                openEffect	: 'fade',
+                closeEffect	: 'fade',
+                padding : 0,
+                overlayOpacity : 1
             });
         }
     }

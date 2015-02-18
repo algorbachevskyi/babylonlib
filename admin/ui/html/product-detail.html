@@ -1,0 +1,235 @@
+<script src="../ui/js/custom/products.js"></script>
+
+<!-- begin:article -->
+<div class="row">
+<!-- begin:sidebar -->
+<div class="col-md-3 col-sm-4 sidebar">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="widget">
+                <div class="widget-title">
+                    <h3>Кошик</h3>
+                </div>
+                <ul class="cart list-unstyled" id="cart-widget-list">
+
+                </ul>
+                <ul class="list-unstyled" id="cart-widget-total">
+
+                </ul>
+            </div>
+
+            <!-- break -->
+            <div class="widget">
+                <div class="widget-title">
+                    <h3>Категорії</h3>
+                </div>
+                <ul class="nav nav-pills nav-stacked">
+                    <?php foreach($categories as $id=>$name):?>
+                    <li class="<?= $activeCategory == $id ? 'active' : '' ?>"><a href="/products?cat=<?= $id?>"><?=$name?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <!-- break -->
+            <div class="widget">
+                <div class="widget-title">
+                    <h3>Допомога</h3>
+                </div>
+                <p>Потрібна консультація? Напишіть нам <a href="contact.html">листа</a> і ми обов'язково зв'яжемося з Вами!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:sidebar -->
+
+<!-- begin:content -->
+<div class="col-md-9 col-sm-8 content">
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li><a href="/">Головна</a></li>
+            <li><a href="/products?cat=<?= $activeCategory ?>"><?= $categories[$activeCategory] ?></a></li>
+            <li class="active"><?= $product['name']?></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="heading-title">
+    <h2><span> <?= $product['name']?></span> <span class="text-yellow">.</span></h2>
+</div>
+<div class="row">
+    <!-- begin:product-image-slider -->
+    <div class="col-md-6 col-sm-6">
+        <div id="product-single" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <?php if(count($product['images']) == 0):?>
+                <div class="item active">
+                    <div class="product-single">
+                        <img src="../ui/img/product1.jpg" class="img-responsive">
+                    </div>
+                </div>
+                <?php endif;?>
+                <?php foreach($product['images'] as $index=>$image):?>
+                    <div class="item <?= $index == 0 ? 'active' : ''?>">
+                        <div class="product-single">
+                            <img src="../ui/products_imgs/<?= $image['url']; ?>" class="img-responsive">
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <a class="left carousel-control" href="#product-single" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="right carousel-control" href="#product-single" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </div>
+    <!-- end:product-image-slider -->
+
+    <!-- begin:product-spesification -->
+    <div class="col-md-6 col-sm-6">
+        <div class="single-desc">
+            <form>
+                      <span class="visible-xs">
+                          <strong><?= $product['category_name']?> / SM-<?= $product['id']?> / <?= $product['price']?>.00 грн / <?php echo $product['count'] == 0 ? '<i class="text-muted">Відсутній в продажі</i>' : 'В наявності'?></strong>
+                      </span>
+
+                <table>
+                    <tbody>
+                    <tr class="hidden-xs">
+                        <td><strong>Категорія</strong></td>
+                        <td>:</td>
+                        <td><?= $product['category_name']?></td>
+                    </tr>
+                    <tr class="hidden-xs">
+                        <td><strong>Код продукту</strong></td>
+                        <td>:</td>
+                        <td>SM-<?= $product['id']?></td>
+                    </tr>
+                    <tr class="hidden-xs">
+                        <td><strong>Наявність</strong></td>
+                        <td>:</td>
+                        <td><?php echo $product['count'] == 0 ? '<i class="text-muted">Відсутній в продажі</i>' : 'В наявності'?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><span class="price"><?= $product['price']?>.00 грн</span></td>
+                    </tr>
+                    <tr id="count-select-group">
+                        <td><strong>Кількість</strong></td>
+                        <td>:</td>
+                        <td>
+                            <select class="form-control" id="count-select" onchange="productData.amount = this.value">
+                                <?php for ($i = 1; $i <= $product['count']; $i++):?>
+                                    <option value="<?= $i ?>"><?= $i ?></option>
+                                <?php endfor;?>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr class="<?= $product['count'] == 0 ? hidden : ''?>">
+                        <td colspan="3">
+                            <a  id="to-basket" onclick="!productInBasket(prodId) ? saveToBasket(productData) : ''" class="btn btn-sm">+ в кошик</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+    <!-- end:product-spesification -->
+</div>
+<!-- break -->
+<!-- begin:product-detail -->
+<div class="row">
+    <div class="col-md-12 content-detail">
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#desc" data-toggle="tab">Опис</a></li>
+            <li class=""><a href="#care" data-toggle="tab">Характеристики</a></li>
+            <li class=""><a href="#size" data-toggle="tab">Гарантія</a></li>
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="desc">
+                <p> <?= $product['about']?></p>
+            </div>
+            <div class="tab-pane fade" id="care">
+                <p><?= $product['data']?></p>
+            </div>
+            <div class="tab-pane fade" id="size">
+                <p><?= $product['warranty']?></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:product-detail -->
+
+<!-- begin:related-product -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="heading-title">
+            <h2>Схожий <span>Товар</span> <span class="text-yellow">.</span></h2>
+        </div>
+
+        <div class="row product-container" style="position: relative; height: 463.75px;">
+            <h3 class="col-md-12 text-center <?= count($products) == 0 ? '' : 'hidden'?>">Схожий товар відсутній</h3>
+
+            <?php foreach($products as $prod):?>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="thumbnail product-item">
+                        <a href="/product/<?= $prod['id']?>"><img alt="" src="<?php echo count($prod['images']) == 0 ? 'ui/img/product1.jpg' : '../ui/products_imgs/'.$prod['images'][0]['url']; ?>"></a>
+                        <div class="caption">
+                            <h5><?= $prod['name']?></h5>
+                            <p><?= $prod['price']?>.00 грн</p>
+                            <p><?php echo $prod['count'] == 0 ? '<i class="text-muted">Відсутній в продажі</i>' : 'В наявності'?></p>
+                        </div>
+                        <div id="badge-<?= $prod['id']?>">
+                            <?php if($prod['recomended'] == 1):?>
+                            <div class="product-item-badge">Радимо!</div>
+                            <?php endif;?>
+                        </div>
+                    </div>
+                </div>
+            <script>
+                if (productInBasket('<?= $prod["id"]?>')) {$('#badge-<?= $prod["id"]?>').html('<div class="product-item-badge in-basket">В кошику!</div>')}
+            </script>
+            <?php endforeach; ?>
+
+        </div>
+    </div>
+</div>
+<!-- end:related-product -->
+
+</div>
+</div>
+</div>
+<!-- end:content -->
+</div>
+<!-- end:article -->
+<script>
+    productData = {
+        id : '<?= $product["id"]?>',
+        name : '<?= $product["name"]?>',
+        amount : $('#count-select').val(),
+        price : '<?= $product["price"]?>',
+        count : '<?= $product["count"]?>',
+        category : '<?= $product["category_name"]?>',
+        data : '<?= $product["data"]?>',
+        about : '<?= $product["about"]?>',
+        warranty : '<?= $product["warranty"]?>',
+        recomended : '<?= $product["recomended"]?>',
+        url : '<?= $product["images"][0]["url"]?>'
+    };
+
+    prodId = <?= $product['id']?>;
+
+    if (productInBasket(prodId)) {
+        $('#count-select-group').addClass('hidden');
+        $('#to-basket').html('<i class="fa fa-check"></i> товар в кошику!').addClass('btn-danger');
+    } else {
+        $('#to-basket').html('+ в кошик').addClass('btn-primary');
+    }
+
+</script>
+

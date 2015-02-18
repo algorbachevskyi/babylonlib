@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Редагувати Продукт</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="panel  panel-blue">
+    <div class="panel-heading">
+        Форма редагування продукту
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <form id="product" action="/product/edit" method="post">
+                    <div class="form-group">
+                        <label>Назва</label>
+                        <input id="name" name="name" class="form-control" placeholder="Введіть назву" value="<?= $product['name'] ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Категорія</label>
+                        <select id="category" name="category" class="form-control">
+
+                            <?php foreach($categories as $category):?>
+                            <option <?php if ($product['category_id'] == $category['id']) echo "selected" ?> value="<?= $category['id']?>"><?= $category['name'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <label>Кількість одиниць</label>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">Шт</span>
+                        <input type="text" id="count" name="count" class="form-control" placeholder="Кількість одиниць" value="<?= $product['count'] ?>" required>
+                    </div>
+                    <label>Ціна за одиницю</label>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">Грн</span>
+                        <input type="text" id="price" name="price" class="form-control" placeholder="Ціна" value="<?= $product['price'] ?>" required>
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Зображення</label>
+                        <?php if (empty($pictures)):?>
+                            <span><i class="text-warning">Немає зображеннь</i></span>
+                        <?php else:?>
+
+                            <ul class="list-unstyled pictures">
+                                <?php foreach($pictures as $picture):?>
+                                <?php $picName = $picture['url']; $picId = $picture['id'];?>
+                                <i class="fa fa-times text-danger" onclick="$('#delete_file').val('<?= $picName ?>'); $('#delete_file_id').val('<?= $picId ?>'); $('#delete_file_form').submit();"></i>
+                                <li>
+                                    <a href="/ui/products_imgs/<?= $picture['url']?>" target="_blank"><?= $picture['url']?></a>
+                                </li><br/>
+
+                                <?php endforeach; ?>
+                            </ul>
+
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Характеристики</label>
+                        <textarea id="data" name="data" class="form-control" rows="5" required><?= $product['data'] ?></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Опис</label>
+                        <textarea id="about" name="about" class="form-control" rows="4" required><?= $product['about'] ?></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Гарантійна інформація</label>
+                        <textarea id="warranty" name="warranty" class="form-control" rows="4" required><?= $product['warranty'] ?></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Рекомендувати</label>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="recomended" id="recomended" value="1" <?php if($product['recomended'] == 1): ?>  checked <?php endif;?>>Внести в список рекомендованих
+                            </label>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="update_product" value="true"/>
+                    <input type="hidden" name="productId" value="<?= $product['id'] ?>"/>
+                    <input type="hidden" name="product-files" id="product-files" value=""/>
+
+                    <button type="submit" class="btn btn-warning" id="submit-product">Зберегти</button>
+                </form>
+
+                <form action="/removefile" method="post" class="hidden" id="delete_file_form">
+                    <input type="hidden" value="" name="deleted_file" id="delete_file"/>
+                    <input type="hidden" value="" name="deleted_file_id" id="delete_file_id"/>
+                    <input type="hidden" value="<?= $product['id'] ?>" name="product_id" id="product_id"/>
+                </form>
+
+            </div>
+            <div class="col-lg-6">
+                <label>Додати зображення</label>
+                <form action="/upload" method="post"
+                      class="dropzone"
+                      id="my-awesome-dropzone"></form>
+            </div>
+        </div>
+        <!-- /.row (nested) -->
+    </div>
+    <!-- /.panel-body -->
+</div>
+
+<br/>

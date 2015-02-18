@@ -134,6 +134,39 @@ body {
     width: 100%; }
  }
 
+a img {
+  width: 100%;
+  border-radius: 2px; }
+
+.small-padding {
+  padding: 3px; }
+
+.padding-20 {
+  padding: 20px; }
+
+.tabs-link {
+  font-weight: 100;
+  color: #160f12 !important; }
+
+.flexslider {
+  margin: 0;
+  border: 0; }
+  .flexslider .flex-control-thumbs {
+    margin: 0;
+    padding: 4px; }
+
+.flex-control-thumbs img {
+  opacity: 0.4; }
+
+.fancybox-close {
+  position: fixed;
+  top: 30px;
+  right: 80px;
+  background-image: url(../../imgs/closeButton.png);
+  background-size: contain;
+  width: 20px;
+  height: 20px; }
+
 .main-fab {
   position: absolute;
   z-index: 100;
@@ -397,41 +430,20 @@ body {
     padding: 0 0 0 15px; }
  }
 
-.hidden-content {
-  position: absolute;
-  width: calc(100% - 29px);
-  height: 170px !important;
-  background: #ff3d00;
-  color: #fff;
-  border-radius: 0 0 2px 2px;
-  -webkit-clip-path: circle(0px at 80% 20px); }
-  .hidden-content.show {
-    -webkit-transition-timing-function: cubic-bezier(0.34, 0.12, 0.98, 0.36);
-    transition-timing-function: cubic-bezier(0.34, 0.12, 0.98, 0.36);
-    -webkit-transition-duration: 0.2s;
-    transition-duration: 0.2s;
-    -webkit-clip-path: circle(300px at 50% 100px);
-    clip-path: circle(300px at 50% 100px);
-    z-index: 10; }
-  .hidden-content .value {
-    float: right;
-    padding: 0 10px;
-    font-size: 2.2em !important;
-    line-height: 38px;
-    text-transform: uppercase;
-    position: absolute;
-    right: 5px;
-    top: 8px; }
-  .hidden-content .card__actions {
-    position: absolute;
-    bottom: 0px;
-    left: 0px; }
+.photos {
+  margin-bottom: 20px; }
 
-.add-to-cart-fab-hover {
-  transform: translate(-30px, 58px) scale(1.2, 1.2);
-  -webkit-transition: all 0.4s cubic-bezier(1, 0, 0.8, 0.26);
-  -moz-transition: all 0.4s cubic-bezier(1, 0, 0.8, 0.26);
-  opacity: 0; }
+.price {
+  font-size: 22px;
+  padding-bottom: 15px;
+  display: inline-block; }
+
+/*================================
+*   CART page styles
+*================================*/
+.cart {
+  padding: 30px 0 20px;
+  height: auto; }
 
 .section {
   height: 100%; }

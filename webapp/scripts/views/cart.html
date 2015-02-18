@@ -1,0 +1,66 @@
+<div class="container cart">
+    <!-- CART WIDGET -->
+    <div class="col-sm-3 col-lg-2 cart-widget">
+        <div class="card">
+            <div class="card__top" style="padding-bottom: 16px">
+                <strong class="card-title">Категорії</strong>
+            </div>
+            <ul class="list">
+                <li class="list-row btn btn--raised" lx-ripple="grey-600">
+                    <div class="list-content-tile list-content-tile--one-line">
+                        <strong>Книги</strong>
+                    </div>
+                </li>
+
+                <li class="list-row btn btn--raised" lx-ripple="grey-600">
+                    <div class="list-content-tile list-content-tile--one-line">
+                        <strong>Ілюстрації</strong>
+                    </div>
+                </li>
+
+                <li class="list-row btn btn--raised" lx-ripple="grey-600">
+                    <div class="list-content-tile list-content-tile--one-line">
+                        <strong>Сувеніри</strong>
+                    </div>
+                </li>
+
+                <li class="list-row btn btn--raised" lx-ripple="grey-600">
+                    <div class="list-content-tile list-content-tile--one-line">
+                        <strong class="tc-deep-orange-A700">Всі товари</strong>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- END CART WIDGET -->
+    <!-- PRODUCTS -->
+    <div class="col-sm-9 col-lg-10">
+        <!--<div class="card">-->
+            <!--<div class="card__top">-->
+                <!--<strong class="card-title tc-deep-orange-A700">Кошик</strong>-->
+                <!--<span class="fs-subhead tc-black-2 display-block">Lorem Ipsum</span>-->
+
+            <!--</div>-->
+            <!--<div class="card__content">-->
+                <!--<span class="price tc-deep-orange-A700">&#8372;50</span>-->
+
+                <!--<div class="paragraph fs-body-1">-->
+                    <!--<p class="fs-subhead display-block">-->
+                        <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.-->
+                        <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.-->
+                    <!--</p>-->
+
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="card__actions">-->
+                <!--<button class="btn btn--m btn--black btn--flat" lx-ripple>Додати в корзину</button>-->
+                <!--<button class="btn btn--m btn--orange btn--flat" lx-ripple>Назад до списку</button>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+        <ngcart-cart id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" data="item"></ngcart-cart>
+    </div>
+</div>

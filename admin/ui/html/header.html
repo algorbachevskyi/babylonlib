@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="description" content="responsive clothing store template">
+    <meta name="author" content="afriq yasin ramadhan">
+    <link rel="shortcut icon" href="../ui/img/favicon.png">
+
+    <title>Sunmarket</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../ui/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../ui/css/style.css" rel="stylesheet">
+    <link href="../ui/css/responsive.css" rel="stylesheet">
+    <link href="../ui/css/custom.css" rel="stylesheet">
+    <link href="../ui/js/plugins/pnotify/pnotify.custom.min.css" rel="stylesheet">
+
+
+    <script src="../ui/js/lib/jquery.js"></script>
+    <script src="../ui/js/lib/bootstrap.min.js"></script>
+    <script src="../ui/js/lib/masonry.pkgd.min.js"></script>
+    <script src="../ui/js/lib/imagesloaded.pkgd.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script src="../ui/js/lib/jstorage.js"></script>
+    <script src="../ui/js/plugins/pnotify/pnotify.custom.min.js"></script>
+
+    <script src="../ui/js/lib/script.js"></script>
+    <script src="../ui/js/custom/cart.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../ui/js/lib/html5shiv.js"></script>
+    <script src="../ui/js/lib/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<!-- begin:navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#clotheshop-navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="clotheshop-navbar">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="divider-vertical"></li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">ПОШУК <b class="caret"></b></a>
+                    <ul class="dropdown-menu search-panel" id="search-panel">
+                        <li>
+
+                            <div class="wrapper">
+
+                                <div class="search-column" id="search-category">
+                                    <div class="search-title">Категорія</div>
+                                    <div class="search-content">
+
+                                        <?php foreach($categories as $id=>$name):?>
+                                            <span id="<?= $id?>"><?=$name?></span>
+                                        <?php endforeach;?>
+                                        <span id="0"> Всі категорії</span>
+
+                                    </div>
+                                </div>
+
+                                <div class="search-column" id="search-price">
+                                    <div class="search-title">Ціна</div>
+                                    <div class="search-content">
+                                        <span id="1"> Менше 500 грн</span>
+                                        <span id="500"> 500 грн - 1000грн</span>
+                                        <span id="1000"> 1000 грн - 1500грн</span>
+                                        <span id="1500"> 1500 грн - 2000грн</span>
+                                        <span id="2000"> Більше 2000грн</span>
+                                        <span id="100500"> Увесь діапазон</span>
+                                    </div>
+                                </div>
+
+                                <div class="search-column" id="search-recom">
+                                    <div class="search-title">Рекомендація</div>
+                                    <div class="search-content">
+                                        <span id="recom"> Рекомендовані</span>
+                                        <span id="not-recom"> Без рекомендації</span>
+                                        <span id="all"> Всі</span>
+
+                                    </div>
+                                </div>
+
+                                <a href="/products" class="btn btn-default btn-search" style="float: right;">Знайти</a>
+
+                            </div>
+
+
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div>
+</nav>
+<!-- end:navbar -->
+
+<!-- begin:content -->
+<div class="container">
+    <!-- begin:logo -->
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="logo">
+
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="account">
+                <ul>
+                    <li>
+                        <div class="hidden-xs">
+                            <h4><a href="/cart">Кошик</a></h4>
+                            <p><strong>Всередині: <span id="product-count"></span></strong></p>
+                        </div>
+                        <div class="visible-xs">
+                            <a href="#" class="btn btn-primary"><span class="cart-item">2</span> <i class="fa fa-shopping-cart"></i></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end:logo -->
+
+    <!-- begin:nav-menus -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-menus">
+                <ul class="nav nav-pills">
+                    <li class="<?= $activeMenu == 'main' ? 'active' : '' ?>"><a href="/">Головна</a></li>
+
+                    <li class="dropdown <?= $activeMenu == 'products' ? 'active' : '' ?>" >
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Каталог товарів <b class="caret"></b></a>
+                        <ul class="dropdown-menu" id="menu1">
+                            <?php foreach($categories as $id=>$name):?>
+                                <li><a href="/products?cat=<?= $id ?>"><?=$name?></a></li>
+                            <?php endforeach;?>
+                            <li class="divider"></li>
+                            <li><a href="/products">Всі товари</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="<?= $activeMenu == 'about' ? 'active' : '' ?>"><a href="/about">Про нас</a></li>
+                    <li class="<?= $activeMenu == 'contacts' ? 'active' : '' ?>"><a href="/contacts">Контакти</a></li>
+                    <li class="<?= $activeMenu == 'delivery' ? 'active' : '' ?>"><a href="/delivery">Оплата та доставка</a></li>
+                    <li class="<?= $activeMenu == 'faq' ? 'active' : '' ?>"><a href="/delivery">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end:nav-menus -->

@@ -1,5 +1,5 @@
 /*
- LumX v0.2.54
+ LumX v0.2.49
  (c) 2014-2015 LumApps http://ui.lumapps.com
  License: MIT
 */
@@ -348,7 +348,7 @@ angular.module('lumx.notification', [])
         {
             // DOM elements
             var dialogHeader = angular.element('<div/>', {
-                class: 'dialog__header p++ fs-title',
+                class: 'dialog__header p fs-title',
                 text: title
             });
 
@@ -360,7 +360,7 @@ angular.module('lumx.notification', [])
         {
             // DOM elements
             var dialogContent = angular.element('<div/>', {
-                class: 'dialog__content p++ pt0 tc-black-2',
+                class: 'dialog__content p pt0 tc-black-2',
                 text: text
             });
 
@@ -984,80 +984,85 @@ angular.module('lumx.scrollbar', [])
 
 
 angular.module('lumx.thumbnail', [])
-    .controller('LxThumbnailController', ['$scope', function($scope)
+    .controller('LxThumbnailController', ['$rootScope', '$scope', function($rootScope, $scope)
         {
-            this.init = function(element)
+            var scope = $scope.$new();
+
+            this.init = function(element, attrs)
             {
-                $scope.element = element;
+                scope.element = element;
+
+                scope.thumbnailSrc = attrs.thumbnailSrc;
+                scope.thumbnailWidth = attrs.thumbnailWidth;
+                scope.thumbnailHeight = attrs.thumbnailHeight;
+
+                this.prepareImage();
             };
 
             this.prepareImage = function()
             {
-                $scope.isLoading = true;
+                var self = this,
+                    img = new Image();
 
-                var img = new Image();
+                img.src = scope.thumbnailSrc;
 
-                img.src = $scope.thumbnailSrc;
-
-                $scope.element.css({
-                    width: $scope.thumbnailWidth + 'px',
-                    height: $scope.thumbnailHeight + 'px'
+                scope.element.css({
+                    'width': scope.thumbnailWidth,
+                    'height': scope.thumbnailHeight
                 });
+
+                scope.element.addClass('thumbnail--is-loading');
 
                 img.onload = function()
                 {
-                    $scope.originalWidth = img.width;
-                    $scope.originalHeight = img.height;
+                    scope.originalWidth = img.width;
+                    scope.originalHeight = img.height;
 
-                    addImage();
-
-                    $scope.isLoading = false;
+                    self.addImage();
                 };
             };
 
-            function addImage()
+            this.addImage = function()
             {
-                var imageSizeWidthRatio = $scope.thumbnailWidth / $scope.originalWidth,
-                    imageSizeWidth = $scope.thumbnailWidth,
-                    imageSizeHeight = $scope.originalHeight * imageSizeWidthRatio;
+                var imageSizeWidthRatio = scope.thumbnailWidth / scope.originalWidth,
+                    imageSizeWidth = scope.thumbnailWidth,
+                    imageSizeHeight = scope.originalHeight * imageSizeWidthRatio;
 
-                if (imageSizeHeight < $scope.thumbnailHeight)
+                if (imageSizeHeight < scope.thumbnailHeight)
                 {
-                    var resizeFactor = $scope.thumbnailHeight / imageSizeHeight;
+                    var resizeFactor = scope.thumbnailHeight / imageSizeHeight;
 
-                    imageSizeHeight = $scope.thumbnailHeight;
+                    imageSizeHeight = scope.thumbnailHeight;
                     imageSizeWidth = resizeFactor * imageSizeWidth;
                 }
 
-                $scope.element.css({
-                    'background': 'url(' + $scope.thumbnailSrc + ') no-repeat',
+                scope.element.removeClass('thumbnail--is-loading');
+
+                scope.element.css({
+                    'background': 'url(' + scope.thumbnailSrc + ') no-repeat',
                     'background-position': 'center',
                     'background-size': imageSizeWidth + 'px ' + imageSizeHeight + 'px',
                     'overflow': 'hidden'
                 });
-            }
+
+                $rootScope.$broadcast('THUMBNAIL_LOADED', scope.thumbnailSrc);
+            };
         }])
     .directive('lxThumbnail', function()
     {
         return {
-            restrict: 'E',
-            template: '<div class="thumbnail" ng-class="{ \'thumbnail--is-loading\': isLoading }"></div>',
-            replace: true,
+            restrict: 'A',
             controller: 'LxThumbnailController',
-            scope: {
-                thumbnailSrc: '@',
-                thumbnailWidth: '@',
-                thumbnailHeight: '@'
-            },
+            scope: {},
             link: function(scope, element, attrs, ctrl)
             {
-                ctrl.init(element);
+                scope.init = 0;
 
                 attrs.$observe('thumbnailSrc', function()
                 {
                     if (attrs.thumbnailSrc)
                     {
-                        ctrl.prepareImage();
+                        scope.init = scope.init + 1;
                     }
                 });
 
@@ -1065,7 +1070,7 @@ angular.module('lumx.thumbnail', [])
                 {
                     if (attrs.thumbnailWidth)
                     {
-                        ctrl.prepareImage();
+                        scope.init = scope.init + 1;
                     }
                 });
 
@@ -1073,7 +1078,52 @@ angular.module('lumx.thumbnail', [])
                 {
                     if (attrs.thumbnailHeight)
                     {
-                        ctrl.prepareImage();
+                        scope.init = scope.init + 1;
+                    }
+                });
+
+                scope.$watch('init', function(newValue)
+                {
+                    if (newValue === 3)
+                    {
+                        ctrl.init(element, attrs);
+                        element.addClass('thumbnail');
+                    }
+                });
+
+                scope.$watch(function()
+                {
+                    return attrs.thumbnailSrc;
+                },
+                function(newValue, oldValue)
+                {
+                    if (newValue !== oldValue)
+                    {
+                        ctrl.init(element, attrs);
+                    }
+                });
+
+                scope.$watch(function()
+                {
+                    return attrs.thumbnailWidth;
+                },
+                function(newValue, oldValue)
+                {
+                    if (newValue !== oldValue)
+                    {
+                        ctrl.init(element, attrs);
+                    }
+                });
+
+                scope.$watch(function()
+                {
+                    return attrs.thumbnailHeight;
+                },
+                function(newValue, oldValue)
+                {
+                    if (newValue !== oldValue)
+                    {
+                        ctrl.init(element, attrs);
                     }
                 });
             }
@@ -1348,7 +1398,6 @@ angular.module('lumx.date-picker', [])
             $element = element;
             $datePicker = element.find('.lx-date-picker');
 
-            $scope.currentDate = moment(new Date());
             $scope.localeData = moment().locale(locale).localeData();
             $scope.now = moment().locale(locale);
             $scope.month = $scope.month || moment().locale(locale).startOf('day');
@@ -1364,13 +1413,6 @@ angular.module('lumx.date-picker', [])
                 $scope.selectedDate = {
                     date: moment(val).locale(locale),
                     formatted: moment(val).locale(locale).format('LL')
-                };
-            }
-            else
-            {
-                $scope.selectedDate = {
-                    date: undefined,
-                    formatted: undefined
                 };
             }
         };
@@ -1394,7 +1436,7 @@ angular.module('lumx.date-picker', [])
                 formatted: moment(day).locale(locale).format('LL')
             };
 
-            $scope.model = day.toDate();
+            $scope.model = day;
 
             generateCalendar();
         };
@@ -1467,7 +1509,7 @@ angular.module('lumx.date-picker', [])
             {
                 $scope.emptyLastDays.push({});
             }
-
+            
             $scope.days = days;
         }
     }])
@@ -1587,19 +1629,16 @@ angular.module('lumx.dropdown', [])
         function setDropdownMenuCss()
         {
             var top,
-                bottom,
                 left = 'auto',
                 right = 'auto';
 
             if (angular.isDefined($scope.fromTop))
             {
                 top = dropdown.offset().top;
-                bottom = $window.innerHeight - dropdown.offset().top;
             }
             else
             {
                 top = dropdown.offset().top + dropdown.outerHeight();
-                bottom = $window.innerHeight - dropdown.offset().top - dropdown.outerHeight();
             }
 
             if ($scope.position === 'left')
@@ -1615,24 +1654,12 @@ angular.module('lumx.dropdown', [])
                 left = (dropdown.offset().left - (dropdownMenu.outerWidth() / 2)) + (dropdown.outerWidth() / 2);
             }
 
-            if ($scope.direction === 'up')
+            dropdownMenu.css(
             {
-                dropdownMenu.css(
-                    {
-                        left: left,
-                        right: right,
-                        bottom: bottom
-                    });
-            }
-            else
-            {
-                dropdownMenu.css(
-                {
-                    left: left,
-                    right: right,
-                    top: top
-                });
-            }
+                left: left,
+                right: right,
+                top: top
+            });
 
             if (angular.isDefined($scope.width))
             {
@@ -1691,8 +1718,6 @@ angular.module('lumx.dropdown', [])
                     dropdownMenu.find('.dropdown-menu__content').removeAttr('style');
                 }
             });
-
-            dropdown.addClass('dropdown--is-active');
         }
 
         function closeDropdownMenu()
@@ -1708,8 +1733,6 @@ angular.module('lumx.dropdown', [])
                     dropdownMenu
                         .appendTo(dropdown)
                         .removeAttr('style');
-
-                    dropdown.removeClass('dropdown--is-active');
                 }
             });
         }
@@ -1758,8 +1781,7 @@ angular.module('lumx.dropdown', [])
             scope: {
                 position: '@',
                 width: '@',
-                fromTop: '@',
-                direction: '@'
+                fromTop: '@'
             },
             link: function(scope, element, attrs, ctrl)
             {
@@ -1931,7 +1953,7 @@ angular.module('lumx.search-filter', [])
                     {
                         if (angular.isDefined(attrs.closed) && !$input.val())
                         {
-                            $searchFilter.velocity({
+                            $searchFilter.velocity({ 
                                 width: 40
                             }, {
                                 duration: 400,
@@ -1945,7 +1967,7 @@ angular.module('lumx.search-filter', [])
                 {
                     if (angular.isDefined(attrs.closed))
                     {
-                        $searchFilter.velocity({
+                        $searchFilter.velocity({ 
                             width: attrs.filterWidth ? attrs.filterWidth: 240
                         }, {
                             duration: 400,
@@ -2393,7 +2415,7 @@ angular.module('lumx.select', [])
                 {
                     modelToSelection(attrs.modelToSelection);
                 }
-
+                
                 attrs.$observe('modelToSelection', modelToSelection);
             }
         };
@@ -2958,7 +2980,7 @@ function HljsCtrl (hljsCache,   hljsService) {
           });
         }
 
-        if ((staticHTML || staticText) &&
+        if ((staticHTML || staticText) && 
             angular.isUndefined(iAttrs.source) && angular.isUndefined(iAttrs.include)) {
 
           var code;
@@ -3129,9 +3151,11 @@ angular.module("lumx.dropdown").run(['$templateCache', function(a) { a.put('lumx
     '');
 	 }]);
 angular.module("lumx.file-input").run(['$templateCache', function(a) { a.put('lumx.file_input.html', '<div class="input-file">\n' +
-    '    <span class="input-file__label">{{ label }}</span>\n' +
-    '    <span class="input-file__filename"></span>\n' +
-    '    <input type="file">\n' +
+    '    <label>\n' +
+    '        <span class="input-file__label">{{ label }}</span>\n' +
+    '        <span class="input-file__filename"></span>\n' +
+    '        <input type="file">\n' +
+    '    </label>\n' +
     '</div>');
 	 }]);
 angular.module("lumx.text-field").run(['$templateCache', function(a) { a.put('lumx.text_field.html', '<div class="text-field text-field--{{ theme }}-theme"\n' +
@@ -3259,13 +3283,13 @@ angular.module("lumx.date-picker").run(['$templateCache', function(a) { a.put('l
     '\n' +
     '    <div class="lx-date-picker">\n' +
     '        <div class="lx-date-picker__current-day-of-week">\n' +
-    '            <span ng-if="selectedDate.date">{{ localeData.weekdays(selectedDate.date || currentDate) }}</span>\n' +
+    '            <span ng-if="selectedDate.date">{{ localeData.weekdays(selectedDate.date) }}</span>\n' +
     '            <span ng-if="!selectedDate.date">{{ localeData.weekdays(now) }}</span>\n' +
     '        </div>\n' +
     '\n' +
     '        <div class="lx-date-picker__current-date">\n' +
     '            <div ng-if="selectedDate.date">\n' +
-    '                <span>{{ localeData.monthsShort(selectedDate.date || currentDate) }}</span>\n' +
+    '                <span>{{ localeData.monthsShort(selectedDate.date) }}</span>\n' +
     '                <strong>{{ selectedDate.date.format(\'DD\') }}</strong>\n' +
     '                <em>{{ selectedDate.date.format(\'YYYY\') }}</em>\n' +
     '            </div>\n' +
