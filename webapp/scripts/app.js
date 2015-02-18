@@ -50,6 +50,10 @@ blApp.config(['$routeProvider',
                 templateUrl: 'webapp/scripts/views/drawer.html',
                 controller: 'DrawerCtrl'
             }).
+            when('/news', {
+                templateUrl: 'webapp/scripts/views/news.html',
+                controller: 'NewsCtrl'
+            }).
             when('/contacts', {
                 templateUrl: 'webapp/scripts/views/contacts.html',
                 controller: 'ContactsCtrl'

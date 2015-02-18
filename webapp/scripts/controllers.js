@@ -127,6 +127,16 @@ blAppControllers.controller('DrawerCtrl', ['$scope', '$log',
 
 //-----------------------------------------------------------
 
+blAppControllers.controller('NewsCtrl', ['$scope', '$log',
+    function($scope, $log) {
+
+        $('body').css('overflow','visible');
+
+        $log.info('Into News ctrl');
+    }]);
+
+//-----------------------------------------------------------
+
 blAppControllers.controller('ContactsCtrl', ['$scope', '$log',
     function($scope, $log) {
 
