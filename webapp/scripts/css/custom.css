@@ -339,7 +339,7 @@ a img {
     .authors .author-card-wrap .card .btn--fab {
       position: absolute !important;
       overflow: hidden;
-      bottom: 101px;
+      bottom: 90px;
       right: 35px; }
     .authors .author-card-wrap .card .card-subtitle {
       font-size: 1.5em;
@@ -358,7 +358,7 @@ a img {
     .translators .translator-card-wrap .card .btn--fab {
       position: absolute !important;
       overflow: hidden;
-      bottom: 101px;
+      bottom: 90px;
       right: 35px; }
     .translators .translator-card-wrap .card .card-subtitle {
       font-size: 1.5em;
@@ -377,7 +377,7 @@ a img {
     .drawers .drawer-card-wrap .card .btn--fab {
       position: absolute !important;
       overflow: hidden;
-      bottom: 101px;
+      bottom: 90px;
       right: 35px; }
     .drawers .drawer-card-wrap .card .card-subtitle {
       font-size: 1.5em;
@@ -412,6 +412,9 @@ a img {
       color: #160f12; }
     .shop .shop-card-wrap .card .paragraph {
       margin-top: 10px; }
+
+.widget {
+  padding: 0 30px 30px; }
 
 .cart-widget {
   padding: 0 30px 30px; }

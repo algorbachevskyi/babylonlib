@@ -492,7 +492,7 @@ a {
       .btn--fab {
         position: absolute !important;
         overflow: hidden;
-        bottom: 101px;
+        bottom: 90px;
         right: 35px;
       }
       .card-subtitle {
@@ -524,7 +524,7 @@ a {
       .btn--fab {
         position: absolute !important;
         overflow: hidden;
-        bottom: 101px;
+        bottom: 90px;
         right: 35px;
       }
       .card-subtitle {
@@ -556,7 +556,7 @@ a {
       .btn--fab {
         position: absolute !important;
         overflow: hidden;
-        bottom: 101px;
+        bottom: 90px;
         right: 35px;
       }
       .card-subtitle {
@@ -615,6 +615,10 @@ a {
     }
   }
 
+}
+
+.widget {
+  padding: 0 30px 30px;
 }
 
 .cart-widget {
