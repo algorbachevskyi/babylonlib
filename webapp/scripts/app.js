@@ -22,17 +22,33 @@ blApp.config(['$routeProvider',
                 templateUrl: 'webapp/scripts/views/books.html',
                 controller: 'BooksCtrl'
             }).
+            when('/book/:bookId', {
+                templateUrl: 'webapp/scripts/views/book.html',
+                controller: 'BookCtrl'
+            }).
             when('/authors', {
                 templateUrl: 'webapp/scripts/views/authors.html',
                 controller: 'AuthorsCtrl'
+            }).
+            when('/author/:authorId', {
+                templateUrl: 'webapp/scripts/views/author.html',
+                controller: 'AuthorCtrl'
             }).
             when('/translators', {
                 templateUrl: 'webapp/scripts/views/translators.html',
                 controller: 'TranslatorsCtrl'
             }).
+            when('/translator/:translatorId', {
+                templateUrl: 'webapp/scripts/views/translator.html',
+                controller: 'TranslatorCtrl'
+            }).
             when('/drawers', {
                 templateUrl: 'webapp/scripts/views/drawers.html',
                 controller: 'DrawersCtrl'
+            }).
+            when('/drawer/:drawerId', {
+                templateUrl: 'webapp/scripts/views/drawer.html',
+                controller: 'DrawerCtrl'
             }).
             when('/contacts', {
                 templateUrl: 'webapp/scripts/views/contacts.html',

@@ -1,0 +1,76 @@
+<div class="container shop">
+    <!-- BOOK CARD  -->
+    <div class="col-sm-4 col-lg-3 cart-widget">
+        <div class="card">
+            <div class="card__top card__top--img">
+                <img src="/webapp/imgs/cover1.jpg">
+            </div>
+
+            <div class="card__content card__content--small">
+                <strong class="card-title">Курт Воннегут
+                    <span class="price tc-deep-orange-A700 pull-right">&#8372;50</span>
+                </strong>
+                <span class="card-subtitle">Бойня номер п'ять </span> <br/>
+
+                <div class="paragraph fs-body-1">
+                    <p class="fs-subhead display-block">
+                        Перекладач : <br/>
+                        <a href="#/translator/1" class="tc-black-1">Володимир та Лідія Діброви</a> <br/>
+                        Ілюстратор: <br/>
+                        <a href="#/drawer/1" class="tc-black-1">Оля Марусин</a>
+                    </p>
+
+                </div>
+            </div>
+            <div class="card__actions text-right">
+                <button class="fab__primary mdi mdi--add btn btn--s bgc-deep-orange-A400 white-bl btn--raised" lx-ripple="yellow-50" lx-tooltip="В кошик" tooltip-position="left" style="bottom: 10px; right: 5px;">придбати</button>
+            </div>
+        </div>
+    </div>
+    <!-- BOOK CARD END -->
+
+    <!-- BOOK CONTAINER -->
+    <div class="col-sm-8 col-lg-9">
+        <div class="col-xs-12 col-sm-12 col-lg-6 info" style="margin-bottom: 20px">
+            <div class="card">
+                <div class="card__top">
+                    <strong class="card-title">Про книгу</strong>
+                    <span class="fs-subhead tc-black-2 display-block">Бойня номер п'ять</span>
+
+                </div>
+                <div class="card__content">
+
+                    <div class="paragraph fs-body-1">
+                        <p class="fs-subhead display-block">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+                        <br/><br/>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-lg-6 photos">
+            <div class="card">
+                <flex-slider slide="mySlide in mySlides" control-nav="thumbnails" slideshow="false" direction-nav="false">
+                    <li data-thumb="{{mySlide}}">
+                        <a fancybox href="/webapp/imgs/bn5.jpg">
+                            <img ng-src="{{mySlide}}">
+                        </a>
+                    </li>
+                </flex-slider>
+            </div>
+        </div>
+    </div>
+    <!-- BOOK CONTAINER END -->
+</div>

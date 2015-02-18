@@ -50,12 +50,39 @@ blAppControllers.controller('BooksCtrl', ['$scope', '$log',
 
 //-----------------------------------------------------------
 
+blAppControllers.controller('BookCtrl', ['$scope', '$log',
+    function($scope, $log) {
+
+        $('body').css('overflow','visible');
+
+        $scope.mySlides = [
+            '/webapp/imgs/bn5.jpg',
+            '/webapp/imgs/bn5-1.jpg',
+            '/webapp/imgs/bn5-2.jpg',
+            '/webapp/imgs/bn5-3.jpg'
+        ];
+
+        $log.info('Into book ctrl');
+    }]);
+
+//-----------------------------------------------------------
+
 blAppControllers.controller('AuthorsCtrl', ['$scope', '$log',
     function($scope, $log) {
 
         $('body').css('overflow','visible');
 
         $log.info('Into authors ctrl');
+    }]);
+
+//-----------------------------------------------------------
+
+blAppControllers.controller('AuthorCtrl', ['$scope', '$log',
+    function($scope, $log) {
+
+        $('body').css('overflow','visible');
+
+        $log.info('Into author ctrl');
     }]);
 
 //-----------------------------------------------------------
@@ -70,12 +97,32 @@ blAppControllers.controller('TranslatorsCtrl', ['$scope', '$log',
 
 //-----------------------------------------------------------
 
+blAppControllers.controller('TranslatorCtrl', ['$scope', '$log',
+    function($scope, $log) {
+
+        $('body').css('overflow','visible');
+
+        $log.info('Into translator ctrl');
+    }]);
+
+//-----------------------------------------------------------
+
 blAppControllers.controller('DrawersCtrl', ['$scope', '$log',
     function($scope, $log) {
 
         $('body').css('overflow','visible');
 
         $log.info('Into drawers ctrl');
+    }]);
+
+//-----------------------------------------------------------
+
+blAppControllers.controller('DrawerCtrl', ['$scope', '$log',
+    function($scope, $log) {
+
+        $('body').css('overflow','visible');
+
+        $log.info('Into drawer ctrl');
     }]);
 
 //-----------------------------------------------------------
