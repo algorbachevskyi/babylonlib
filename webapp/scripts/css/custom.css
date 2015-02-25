@@ -406,6 +406,13 @@ a img {
 /*================================
 *   CONTACTS page styles
 *================================*/
+.contacts {
+  padding: 30px 0 20px; }
+  .contacts a {
+    text-decoration: none !important;
+    cursor: pointer;
+    color: #333; }
+
 /*================================
 *   SHOP page styles
 *================================*/
