@@ -206,6 +206,12 @@ a {
   }
 }
 
+.card__top--img {
+  img {
+    width: 100%;
+  }
+}
+
 .small-padding {
   padding: 3px;
 }
@@ -572,6 +578,33 @@ a {
   }
 
 }
+
+/*================================
+*   NEWS page styles
+*================================*/
+
+.news {
+  max-width: 600px;
+  padding: 30px 0 20px;
+  height: auto;
+
+  .news-card {
+    .bottom-img {
+      max-height: 400px;
+      overflow: hidden;
+      margin: 8px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+}
+
+/*================================
+*   CONTACTS page styles
+*================================*/
 
 /*================================
 *   SHOP page styles

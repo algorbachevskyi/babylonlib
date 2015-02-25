@@ -139,6 +139,9 @@ a img {
   width: 100%;
   border-radius: 2px; }
 
+.card__top--img img {
+  width: 100%; }
+
 .small-padding {
   padding: 3px; }
 
@@ -386,6 +389,23 @@ a img {
     .drawers .drawer-card-wrap .card .paragraph {
       margin-top: 10px; }
 
+/*================================
+*   NEWS page styles
+*================================*/
+.news {
+  max-width: 600px;
+  padding: 30px 0 20px;
+  height: auto; }
+  .news .news-card .bottom-img {
+    max-height: 400px;
+    overflow: hidden;
+    margin: 8px; }
+    .news .news-card .bottom-img img {
+      width: 100%; }
+
+/*================================
+*   CONTACTS page styles
+*================================*/
 /*================================
 *   SHOP page styles
 *================================*/
